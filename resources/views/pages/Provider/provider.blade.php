@@ -71,9 +71,10 @@
                                 <div class="form-group has-success">
                                     <input class="form-control" placeholder="{{ trans('provider_trans.pr_num2') }}" required="" type="text" name="pr_name_ar" id="pr_num2" >
                                 </div>
-
                                 <div class="form-group has-success">
+
                                     <input class="form-control" placeholder="{{ trans('provider_trans.pr_num1') }}" required="" type="text" name="pr_name_ar" id="pr_num1" >
+                                    
                                 </div>
                             </div>
                         </div>
