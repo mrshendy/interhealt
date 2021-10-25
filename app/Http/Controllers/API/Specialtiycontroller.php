@@ -31,7 +31,6 @@ class Specialtiycontroller extends Controller
          
             $Specialtiy=new Specialtiy();
             $Specialtiy->Name=['en'=>$request->Name_en,'ar'=>$request->Name_ar];
-            $Specialtiy->Servicetype_id=$request->Servicetype_id;
             $Specialtiy->notes=$request->notes;
             $Specialtiy->user_add=$request->user_add;
             $Specialtiy->save();
