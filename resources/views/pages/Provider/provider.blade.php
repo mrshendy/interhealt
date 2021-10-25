@@ -62,6 +62,22 @@
                                 <div class="form-group has-success">
                                     <input class="form-control" placeholder="{{ trans('provider_trans.pr_email') }}" required="" type="email" name="pr_email" id="pr_email" >
                                 </div>
+                                <div class="form-group has-success">
+                                <select name="Id_country" class="form-control SlectBox" onclick="console.log($(this).val())"
+                                        onchange="console.log($(this).val())" >
+                                        <!--placeholder-->
+                                        <option value="" selected disabled>{{ trans('Government_trans.Country') }}</option>
+                                        @foreach ($Countries as $Country)
+                                        <option value="{{ $Country->id }}">{{ $Country->Name }}</option>
+                                    @endforeach
+                                  </select>
+                                </div>
+                                <div class="form-group has-success">
+                                <select id="id_city" name="id_city" class="form-control">
+                                     <option value="" selected disabled>{{ trans('Area_trans.city') }}</option>
+
+                                </select>
+                                </div>
                             </div>
                             <div class="col-lg-6">
 
@@ -72,9 +88,21 @@
                                     <input class="form-control" placeholder="{{ trans('provider_trans.pr_num2') }}" required="" type="text" name="pr_name_ar" id="pr_num2" >
                                 </div>
                                 <div class="form-group has-success">
-
                                     <input class="form-control" placeholder="{{ trans('provider_trans.pr_num1') }}" required="" type="text" name="pr_name_ar" id="pr_num1" >
-                                    
+                                </div>
+                              
+                                <div class="form-group has-success">
+                                <select id="Id_Governmentes" name="Id_Governmentes" class="form-control" onselect="get_city($(this).val())"
+                                     onchange="get_city($(this).val())"  onvolumechange="get_city($(this).val())">
+                                     <option value="" selected disabled>{{ trans('Area_trans.Governmentes') }}</option>
+                                 </select>
+                                </div>
+                                <div class="form-group has-success">
+                                 <select id="Id_Governmentes" name="Id_Governmentes" class="form-control" onselect="get_Area($(this).val())"
+                                     onchange="get_Area($(this).val())"  onvolumechange="get_Area($(this).val())">
+                                    <option value="" selected disabled>{{ trans('Area_trans.Area') }}</option>
+
+                                  </select>
                                 </div>
                             </div>
                         </div>
@@ -122,5 +150,76 @@
     <!-- Sweet-alert js  -->
     <script src="{{URL::asset('assets/plugins/sweet-alert/sweetalert.min.js')}}"></script>
     <script src="{{URL::asset('assets/js/sweet-alert.js')}}"></script>
+    <script>
+        $(document).ready(function() {
+            $('select[name="Id_country"]').on('change', function() {
+                var Id_country = $(this).val();
+                if (Id_country) {
+                    $.ajax({
+                        url: "{{ URL::to('city') }}/" + Id_country,
+                        type: "GET",
+                        dataType: "json",
+                        success: function(data) {
+                            $('select[name="Id_Governmentes"]').empty();
+                            $.each(data, function(key, value) {
+                                $('select[name="Id_Governmentes"]').append('<option value="' +
+                                key + '">' + value + '</option>');
+                            });
+                        },
+                    });
 
+                } else {
+                    console.log('AJAX load did not work');
+                }
+            });
+
+        });
+
+
+    </script>
+    <script>
+
+function get_city(Id_Governmentes) {
+    var Id_Governmentes =Id_Governmentes;
+                if (Id_Governmentes) {
+                    $.ajax({
+                        url: "{{ URL::to('provider') }}/" + Id_Governmentes,
+                        type: "GET",
+                        dataType: "json",
+                        success: function(data) {
+                            $('select[name="id_city"]').empty();
+                            $.each(data, function(key, value) {
+                                $('select[name="id_city"]').append('<option value="' +
+                                key + '">' + value + '</option>');
+                            });
+                        },
+                    });
+
+                } else {
+                    console.log('AJAX load did not work');
+                }
+}
+
+function get_area(Id_city) {
+    var Id_city =Id_city;
+                if (Id_city) {
+                    $.ajax({
+                        url: "{{ URL::to('provider') }}/" + Id_city,
+                        type: "GET",
+                        dataType: "json",
+                        success: function(data) {
+                            $('select[name="id_area"]').empty();
+                            $.each(data, function(key, value) {
+                                $('select[name="id_area"]').append('<option value="' +
+                                key + '">' + value + '</option>');
+                            });
+                        },
+                    });
+
+                } else {
+                    console.log('AJAX load did not work');
+                }
+}
+
+    </script>
 @endsection

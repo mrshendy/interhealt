@@ -38,17 +38,17 @@ Route::group(
         {
             Route::resource('countries', 'CountriesController');
         });
-        Route::group(['namespace'=>'government'],function()
+        Route::group(['namespace'=>'Government'],function()
         {
             Route::resource('government', 'GovernmentController');
         });
-        Route::group(['namespace'=>'city'],function()
+        Route::group(['namespace'=>'City'],function()
         {
             Route::get('/city/{id}', 'CityController@getGovernment');
             Route::resource('city', 'CityController');
 
         });
-        Route::group(['namespace'=>'area'],function()
+        Route::group(['namespace'=>'Area'],function()
         {
             Route::get('/area/{id}', 'AreaController@getcity');
             Route::resource('area', 'AreaController');
@@ -58,19 +58,20 @@ Route::group(
         {
                 Route::resource('User_type','User_typeController');
         });
-        Route::group(['namespace'=>'specialtiy'],function()
+        Route::group(['namespace'=>'Specialtiy'],function()
         {
-            Route::resource('specialtiy', 'SpecialtiyController');
+                Route::resource('specialtiy','SpecialtiyController');
         });
-        Route::group(['namespace'=>'service_type'],function()
+        
+        Route::group(['namespace'=>'Service_type'],function()
         {
             Route::resource('service_type', 'Service_typeController');
         });
-        Route::group(['namespace'=>'provider'],function()
+        Route::group(['namespace'=>'Provider'],function()
         {
             Route::resource('provider', 'ProviderController');
         });
-        Route::group(['namespace'=>'provider_Category'],function()
+        Route::group(['namespace'=>'Provider_Category'],function()
         {
             Route::resource('provider_Category', 'Provider_CategoryController');
         });

@@ -21,7 +21,18 @@ class Provider extends Model
     use SoftDeletes;
 
     protected $dates = ['deleted_at'];
+
+    public function Government(){
+        return $this->belongsTo (Government::class, 'Id_government');
+    }
+    public function Countries(){
+        return $this->belongsTo (Countries::class, 'Id_country');
+    }
+    public function city(){
+        return $this->belongsTo (city::class, 'id_city');
+    }
     public function user_types(){
         return $this->belongsTo (User_type::class, 'id_type');
     }
+    
 }

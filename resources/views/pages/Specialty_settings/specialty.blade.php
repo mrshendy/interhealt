@@ -62,7 +62,6 @@
                             <tr>
                                 <th class="border-bottom-0"style="width: 5%;max-width: 5px; !important">#</th>
                                 <th class="border-bottom-0" style="width: 35%;max-width: 100px;!important">{{ trans('specialty_trans.tabel_name') }}</th>
-                                <th class="border-bottom-0" style="width: 35%;max-width: 100px;!important">{{ trans('specialty_trans.Service_type') }}</th>
                                 <th class="border-bottom-0" style="width: 35%;max-width: 120px;!important">{{ trans('specialty_trans.tabel_note') }}</th>
                                 <th class="border-bottom-0" style="width: 5%;max-width: 50px;!important">{{ trans('specialty_trans.tabel_action') }}</th>
                             </tr>
@@ -76,7 +75,6 @@
                                 <tr>
                                     <td>{{$i}}</td>
                                     <td>{{$Specialtiy->Name}}</td>
-                                    <td>{{$Specialtiy->Service_types->Name }}</td>
                                     <td>{{$Specialtiy->notes}}</td>
                                     <td>
                                         <div class="btn-icon-list">
@@ -125,13 +123,7 @@
                                                         <input type="text" class="form-control" id="Name_en" name="Name_en"
                                                                value="{{$Specialtiy->getTranslation('Name','en')}}">
                                                     </div>
-                                                    <label class="my-1 mr-2" for="inlineFormCustomSelectPref">{{ trans('specialty_trans.Service_type') }}</label>
-                                                    <select name="Servicetype_id" id="Servicetype_id" class="form-control" required>
-                                                        <option value="" selected disabled>{{ trans('specialty_trans.select_type') }}</option>
-                                                        @foreach ($Service_types as $Service_type)
-                                                            <option value="{{ $Service_type->id }}" <?php if($Service_type->id==$Specialtiy->Servicetype_id){echo 'selected="true"';}?> >{{ $Service_type->Name }}</option>
-                                                        @endforeach
-                                                    </select>
+                                                    
                                                     <div class="form-group">
                                                         <label for="exampleFormControlTextarea1">{{ trans('specialty_trans.note') }}</label>
                                                         <textarea class="form-control" id="notes" name="notes" rows="3">{{$Specialtiy->notes}}</textarea>
@@ -205,13 +197,7 @@
                                 <input type="text" class="form-control" id="Name_en" name="Name_en">
                             </div>
 
-                            <label class="my-1 mr-2" for="inlineFormCustomSelectPref">{{ trans('specialty_trans.Service_type') }}</label>
-                            <select name="Servicetype_id" id="Servicetype_id" class="form-control" required>
-                                <option value="" selected disabled>{{ trans('specialty_trans.select_type') }}</option>
-                                @foreach ($Service_types as $Service_type)
-                                    <option value="{{ $Service_type->id }}">{{ $Service_type->Name }}</option>
-                                @endforeach
-                            </select>
+                          
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">{{ trans('specialty_trans.note') }}</label>
                                 <textarea class="form-control" id="notes" name="notes" rows="3"></textarea>

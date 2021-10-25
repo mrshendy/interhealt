@@ -23,8 +23,6 @@ class Specialtiy extends Model
     use SoftDeletes;
 
     protected $dates = ['deleted_at'];
-    public function service_types(){
-        return $this->belongsTo (service_type::class, 'Servicetype_id');
-    }
+  
 
 }

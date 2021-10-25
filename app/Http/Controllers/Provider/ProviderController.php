@@ -6,6 +6,10 @@ use Alert;
 use App\Http\Requests\storeProvider;
 use App\models\Provider_Category;
 use App\models\User_type ;
+use App\models\City;
+use App\models\Countries;
+use App\models\Government;
+use App\models\Area;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -19,10 +23,14 @@ class ProviderController extends Controller
    * @return Response
    */
   public function index()
-  {
+  {   
     $user_types=User_type::all();
+    $city=City::all();
+    $Governmentes=Government::all();
+    $Countries=Countries::all();
+    $Areaes=Area::all();
     $provider_categorys=provider_category::all();
-    return view('pages.provider.provider',compact('provider_categorys','user_types'));
+    return view('pages.provider.provider',compact('provider_categorys','user_types','Countries','Governmentes','city','Areaes'));
 
   }
 
@@ -89,6 +97,34 @@ class ProviderController extends Controller
   {
 
   }
+
+
+
+  public function getcity($id)
+  {
+      $city = city::where("Id_government", $id)->pluck("Name", "id");
+      return json_encode($city);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 
 }
 

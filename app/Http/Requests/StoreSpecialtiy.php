@@ -26,7 +26,7 @@ class StoreSpecialtiy extends FormRequest
         return [
             'Name_ar' => 'required',
             'Name_en' => 'required',
-            'Servicetype_id' => 'required',
+       
         ];
     }
     public function messages()

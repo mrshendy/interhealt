@@ -80,10 +80,10 @@
                             <li class="sub-slide">
                                 <a class="  sub-side-menu__item" data-toggle="sub-slide" href="{{ url('/' . $page='#') }}"> <i class="las la-tools side-menu__icon" style="color: #fb8844de  !important;font-size: 17px;"></i> <span style="padding-top: 9px;"  class="sub-side-menu__label">{{ trans('main_trans.setting') }}</span><i class="sub-angle fe fe-chevron-down"></i></a>
                                 <ul class="sub-slide-menu">
-                                    <li><a class="sub-slide-item" href="{{route('User_type.index') }}">{{ trans('main_trans.typeuser') }}</a></li>
+                                   <!-- <li><a class="sub-slide-item" href="{{route('User_type.index') }}">{{ trans('main_trans.typeuser') }}</a></li>
                                     <li><a class="sub-slide-item" href="{{route('specialtiy.index') }}">{{ trans('main_trans.Specialty_settings') }}</a></li>
                                     <li><a class="sub-slide-item" href="{{route('service_type.index') }}">{{ trans('main_trans.service_type_settings') }}</a></li>
-                                </ul>
+-->                             </ul>
                             </li>
 
 

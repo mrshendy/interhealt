@@ -15,12 +15,10 @@ class CreateSpecialtiesTable extends Migration
     public function up()
     {
         Schema::create('Specialties', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->text('Name');
             $table->text('notes')->nullable();
             $table->text('user_add');
-            $table->unsignedBigInteger('Servicetype_id');
-            $table->foreign('Servicetype_id')->references('id')->on('service_type')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
 

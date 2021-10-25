@@ -1,12 +1,12 @@
 <?php
+
 namespace App\Http\Controllers\Specialtiy;
 use App\Http\Controllers\Controller;
-use Alert;
-use App\Http\Requests\StoreSpecialtiy;
 use App\models\Specialtiy;
-use App\models\Service_type;
+use App\Http\Requests\StoreSpecialtiy;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class SpecialtiyController extends Controller
 {
@@ -18,9 +18,8 @@ class SpecialtiyController extends Controller
    */
   public function index()
   {
-      $Service_types=Service_type::all();
       $Specialties=Specialtiy::all();
-    return view('pages.Specialty_settings.specialty',compact('Specialties','Service_types'));
+    return view('pages.Specialty_settings.specialty',compact('Specialties'));
 
   }
 
@@ -50,7 +49,6 @@ class SpecialtiyController extends Controller
           $validated = $request->validated();
           $Specialtiy=new Specialtiy();
           $Specialtiy->Name=['en'=>$request->Name_en,'ar'=>$request->Name_ar];
-          $Specialtiy->Servicetype_id=$request->Servicetype_id;
           $Specialtiy->notes=$request->notes;
           $Specialtiy->user_add=(Auth::user()->id);
           $Specialtiy->save();
@@ -99,7 +97,6 @@ class SpecialtiyController extends Controller
         $Specialtiy= Specialtiy::findorFail($request->id);
         $Specialtiy->update([
             $Specialtiy->Name=['en'=>$request->Name_en,'ar'=>$request->Name_ar],
-            $Specialtiy->Servicetype_id=$request->Servicetype_id,
             $Specialtiy->notes=$request->notes,
             $Specialtiy->user_add=(Auth::user()->id),
         ]);
