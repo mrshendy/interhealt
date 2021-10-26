@@ -23,16 +23,23 @@ use App\Http\Controllers\API\ApiController;
         Route::post('login_by_phone', [ApiController::class, 'authenticate_by_phone']);
         Route::post('register', [ApiController::class, 'register']);
     });
-    Route::group(['middleware'=>['api','checkpassword','changeLanguage'],'namespace'=>'API'],function(){
-        Route::post('Specialtiy','Specialtiycontroller@index');
-        Route::post('Specialtiy_id','Specialtiycontroller@show');
-        Route::post('Specialtiystore','Specialtiycontroller@store');
 
-    });
+  
+    Route::group(['middleware' => ['jwt.verify','api','checkpassword','changeLanguage'],'namespace'=>'API'], function() {
 
-    Route::group(['middleware' => ['jwt.verify'],'namespace'=>'API'], function() {
-        Route::get('logout', [ApiController::class, 'logout']);
+        Route::post('logout', [ApiController::class, 'logout']);
         Route::post('get_user', [ApiController::class, 'get_user']);
        
     });
   
+    Route::group(['middleware' => ['api','checkpassword','changeLanguage'],'namespace'=>'API'], function() {
+
+        Route::post('Specialtiy','Specialtiycontroller@index');
+        Route::post('Specialtiy_id','Specialtiycontroller@show');
+        Route::post('Specialtiystore','Specialtiycontroller@store');
+
+        Route::post('User_type','User_typecontroller@index');
+
+        Route::post('Join_request','Join_requestcontroller@store');
+
+    });

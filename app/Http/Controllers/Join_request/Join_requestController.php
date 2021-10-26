@@ -1,20 +1,10 @@
-<?php
+<?php 
 
-namespace App\Http\Controllers\Provider;
+namespace App\Http\Controllers\Join_request;
 use App\Http\Controllers\Controller;
-use Alert;
-use App\Http\Requests\storeProvider;
-use App\models\Provider_Category;
-use App\models\User_type ;
-use App\models\City;
-use App\models\Countries;
-use App\models\Government;
-use App\models\Area;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
-
-class ProviderController extends Controller
+class Join_requestController extends Controller 
 {
 
   /**
@@ -23,15 +13,8 @@ class ProviderController extends Controller
    * @return Response
    */
   public function index()
-  {   
-    $user_types=User_type::all();
-    $city=City::all();
-    $Governmentes=Government::all();
-    $Countries=Countries::all();
-    $Areaes=Area::all();
-    $provider_categorys=provider_category::all();
-    return view('pages.Provider.provider',compact('provider_categorys','user_types','Countries','Governmentes','city','Areaes'));
-
+  {
+    
   }
 
   /**
@@ -41,7 +24,7 @@ class ProviderController extends Controller
    */
   public function create()
   {
-
+    
   }
 
   /**
@@ -51,7 +34,7 @@ class ProviderController extends Controller
    */
   public function store(Request $request)
   {
-
+    
   }
 
   /**
@@ -62,7 +45,7 @@ class ProviderController extends Controller
    */
   public function show($id)
   {
-
+    
   }
 
   /**
@@ -73,7 +56,7 @@ class ProviderController extends Controller
    */
   public function edit($id)
   {
-
+    
   }
 
   /**
@@ -84,7 +67,7 @@ class ProviderController extends Controller
    */
   public function update($id)
   {
-
+    
   }
 
   /**
@@ -95,37 +78,9 @@ class ProviderController extends Controller
    */
   public function destroy($id)
   {
-
+    
   }
-
-
-
-  public function getcity($id)
-  {
-      $city = city::where("Id_government", $id)->pluck("Name", "id");
-      return json_encode($city);
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   
-
 }
 
 ?>
