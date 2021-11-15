@@ -8,7 +8,7 @@ class CreateProviderCategoryTable extends Migration {
 	public function up()
 	{
 		Schema::create('Provider_Category', function(Blueprint $table) {
-			$table->increments('id');
+			$table->bigIncrements('id');
 			$table->text('Name');
             $table->text('notes')->nullable();
 			$table->string('User_add', 15);

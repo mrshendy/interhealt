@@ -7,6 +7,7 @@ return [
     'page_name'=>'Managing Category provider',
     'tabel_id'=>'#',
     'tabel_name'=>'name',
+    'name'=>'provider Category',
     'tabel_note'=>'notes',
     'titel_updeta'=>'updeta Category provider Data',
     'tabel_action'=>'Settings',

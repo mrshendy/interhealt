@@ -7,6 +7,7 @@ return [
     'page_name'=>'ادارة فئة مقدم الخدمة',
     'tabel_id'=>'#',
     'tabel_name'=>'الاسم',
+    'name'=>' فئة مقدم الخدمة',
     'tabel_note'=>'الملاحظات',
     'titel_updeta'=>'تعديل بيانات فئة مقدم الخدمة',
     'tabel_action'=>'اعدادات',

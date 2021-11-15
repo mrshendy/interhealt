@@ -31,6 +31,9 @@ class Provider extends Model
     public function city(){
         return $this->belongsTo (city::class, 'id_city');
     }
+    public function Area(){
+        return $this->belongsTo (Area::class, 'Id_Area');
+    }
     public function user_types(){
         return $this->belongsTo (User_type::class, 'id_type');
     }

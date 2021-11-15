@@ -5,6 +5,7 @@ return [
 
     'page_name_main'=>'الإعدادات',
     'page_name'=>'ادارة انواع المستخدمين',
+    'name'=>'نوع المستخدم',
     'tabel_id'=>'#',
     'tabel_name'=>'الاسم',
     'tabel_note'=>'الملاحظات',

@@ -25,7 +25,7 @@ class ApiController extends Controller
 
         //Send failed response if request is not valid
         if ($validator->fails()) {
-            return response()->json(['error' => $validator->messages()], 200);
+            return response()->json(['error' => $validator->messages()], 400);
         }
 
         //Request is valid, create new user
@@ -49,13 +49,17 @@ class ApiController extends Controller
 
         //valid credential
         $validator = Validator::make($credentials, [
-            'email' => 'required|email',
-            'password' => 'required|string|min:6|max:50'
+            'email' => 'required|email'
+          
         ]);
 
         //Send failed response if request is not valid
         if ($validator->fails()) {
-            return response()->json(['error' => $validator->messages()], 200);
+            return response()->json([
+                'success' => false,
+                'message' =>  'The email must be a valid email address.',
+                'status'=> 400
+            ], 400);
         }
 
         //Request is validated
@@ -65,6 +69,7 @@ class ApiController extends Controller
                 return response()->json([
                 	'success' => false,
                 	'message' => 'Login credentials are invalid.',
+                    'status'=> 400
                 ], 400);
             }
         } catch (JWTException $e) {
@@ -72,6 +77,7 @@ class ApiController extends Controller
             return response()->json([
                 	'success' => false,
                 	'message' => 'Could not create token.',
+                    'status'=> 500
                 ], 500);
         }
  	
@@ -87,13 +93,17 @@ class ApiController extends Controller
 
         //valid credential
         $validator = Validator::make($credentials, [
-            'phone' => 'required|string|min:11|max:11',
-            'password' => 'required|string|min:6|max:50'
+            'phone' => 'required|string|min:11|max:11'
+           
         ]);
 
         //Send failed response if request is not valid
         if ($validator->fails()) {
-            return response()->json(['error' => $validator->messages()], 200);
+             return response()->json([
+                'success' => false,
+                'message' =>  'The phone must be at least 11 characters.',
+                'status'=> 400
+            ], 400);
         }
 
         //Request is validated
@@ -103,6 +113,7 @@ class ApiController extends Controller
                 return response()->json([
                 	'success' => false,
                 	'message' => 'Login credentials are invalid.',
+                    'status'=> 400
                 ], 400);
             }
         } catch (JWTException $e) {
@@ -129,7 +140,7 @@ class ApiController extends Controller
 
         //Send failed response if request is not valid
         if ($validator->fails()) {
-            return response()->json(['error' => $validator->messages()], 200);
+            return response()->json(['error' => $validator->messages()], 400);
         }
 
 		//Request is validated, do logout        

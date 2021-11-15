@@ -25,5 +25,7 @@ return [
     'titel_delete'=>' حذف محافظة',
     'massagedelete'=>'هل انت متاكد من عملية الحذف ؟',
     'usertype'=>'الدولة',
+    'Country'=>'اختر الدولة',
+
 
 ];

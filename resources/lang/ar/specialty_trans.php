@@ -7,6 +7,7 @@ return [
     'page_name'=>'ادارة التخصصات الطبية',
     'tabel_id'=>'#',
     'tabel_name'=>'الاسم',
+    'Name'=>'اسم التخصص',
     'tabel_note'=>'الملاحظات',
     'tabel_action'=>'اعدادات',
     'add'=>'اضافة تخصص',

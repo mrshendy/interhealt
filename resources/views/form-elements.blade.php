@@ -75,8 +75,8 @@
 									</div>
 									<div class="form-group mb-0 mt-3 justify-content-end">
 										<div>
-											<button type="submit" class="btn btn-primary">Sign in</button>
-											<button type="submit" class="btn btn-secondary">Cancel</button>
+											<button type="submit" class="btn btn-primary">{{ trans('provider_trans.save') }}</button>
+											<button type="submit" class="btn btn-danger">{{ trans('provider_trans.Cancel') }}</button>
 										</div>
 									</div>
 								</form>
@@ -545,7 +545,8 @@
 								<p class="mg-b-20">It is Very Easy to Customize and it uses in your website apllication.</p>
 								<div class="row row-sm mg-b-20">
 									<div class="col-lg-4">
-										<p class="mg-b-10">Single Select</p><select class="form-control select2-no-search">
+										<p class="mg-b-10">Single Select</p>
+										<select class="form-control select2-no-search">
 											<option label="Choose one">
 											</option>
 											<option value="Firefox">
@@ -566,7 +567,8 @@
 										</select>
 									</div><!-- col-4 -->
 									<div class="col-lg-4 mg-t-20 mg-lg-t-0">
-										<p class="mg-b-10">Single Select with Search</p><select class="form-control select2">
+										<p class="mg-b-10">Single Select with Search</p>
+										<select class="form-control select2">
 											<option label="Choose one">
 											</option>
 											<option value="Firefox">

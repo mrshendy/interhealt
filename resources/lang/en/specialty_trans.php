@@ -9,6 +9,7 @@ return [
     'tabel_name' => 'Name',
     'tabel_note' => 'Note',
     'tabel_action' => 'Action',
+    'Name'=>'Name specialty',
     'add' => 'ADD specialty',
     'name_ar' => 'Name specialty (EN)',
     'name_en' => 'Name specialty (AR)',

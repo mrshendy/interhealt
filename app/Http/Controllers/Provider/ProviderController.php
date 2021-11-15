@@ -4,11 +4,10 @@ namespace App\Http\Controllers\Provider;
 use App\Http\Controllers\Controller;
 use Alert;
 use App\Http\Requests\storeProvider;
+use App\models\Provider;
 use App\models\Provider_Category;
 use App\models\User_type ;
-use App\models\City;
-use App\models\Countries;
-use App\models\Government;
+use App\models\Specialtiy;
 use App\models\Area;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -25,12 +24,10 @@ class ProviderController extends Controller
   public function index()
   {   
     $user_types=User_type::all();
-    $city=City::all();
-    $Governmentes=Government::all();
-    $Countries=Countries::all();
     $Areaes=Area::all();
+    $Specialtiys=Specialtiy::all();
     $provider_categorys=provider_category::all();
-    return view('pages.Provider.provider',compact('provider_categorys','user_types','Countries','Governmentes','city','Areaes'));
+    return view('pages.Provider.provider',compact('provider_categorys','user_types','Areaes','Specialtiys'));
 
   }
 
@@ -49,9 +46,40 @@ class ProviderController extends Controller
    *
    * @return Response
    */
-  public function store(Request $request)
+  public function store(storeProvider $request)
   {
 
+
+    if(Provider::where('phone1',$request->phone1)->orwhere('phone2',$request->phone2)->exists())
+    {
+        return  redirect()->back()->withErrors([trans('provider_trans.existes') ]);
+    }
+    try
+    {
+        $validated = $request->validated();
+        $Provider=new Provider();
+        $Provider->Name=['en'=>$request->Name_en,'ar'=>$request->Name_ar];
+        $Provider->phone1=$request->phone1;
+        $Provider->phone2=$request->phone2;
+        $Provider->email=$request->email;
+        $Provider->address=$request->address;
+        $Provider->lat=$request->lat;
+        $Provider->long=$request->long;
+        $Provider->id_type=$request->id_type;
+        $Provider->id_specialty=$request->id_specialty;
+        $Provider->id_area=$request->id_area;
+        $Provider->id_category=$request->id_provider_category;
+        $Provider->notes=$request->notes;
+        $Provider->line_number=$request->line_number;
+        $Provider->user_add=(Auth::user()->id);
+        $Provider->save();
+        Alert::success( '', trans('service_type_trans.savesuccess'));
+        return redirect()->route('service_type.index');
+
+    }catch(\Exception $e)
+    {
+        return redirect()->back()->withErrors(['error'=>$e->getMessage()]);
+    }
   }
 
   /**
@@ -96,14 +124,6 @@ class ProviderController extends Controller
   public function destroy($id)
   {
 
-  }
-
-
-
-  public function getcity($id)
-  {
-      $city = city::where("Id_government", $id)->pluck("Name", "id");
-      return json_encode($city);
   }
 
 

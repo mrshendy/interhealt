@@ -1,16 +1,17 @@
 @extends('layouts.master')
 @section('css')
-
+<!--- Internal Select2 css-->
+<link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
     <!-- Internal Data table css -->
     <link href="{{ URL::asset('assets/plugins/datatable/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet" />
     <link href="{{ URL::asset('assets/plugins/datatable/css/buttons.bootstrap4.min.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('assets/plugins/datatable/css/responsive.bootstrap4.min.css') }}" rel="stylesheet" />
     <link href="{{ URL::asset('assets/plugins/datatable/css/jquery.dataTables.min.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('assets/plugins/datatable/css/responsive.dataTables.min.css') }}" rel="stylesheet">
-
-
     <!--- Internal Sweet-Alert css-->
     <link href="{{URL::asset('assets/plugins/sweet-alert/sweetalert.css')}}" rel="stylesheet">
+    <!---Internal Fileupload css-->
+    <link href="{{URL::asset('assets/plugins/fileuploads/css/fileupload.css')}}" rel="stylesheet" type="text/css"/>
 
 
 @section('title')
@@ -42,184 +43,112 @@
             </ul>
         </div>
     @endif
-    <div class="row">
-
-		<!--/div-->
-
-        <div class="col-md-12 col-xl-12 col-xs-12 col-sm-12">
-            <div class="card">
-                <div class="card-body">
-                    <form class="needs-validation was-validated">
-                        <div class="row row-sm">
-
-                            <div class="col-lg-6">
-                                <div class="form-group has-success ">
-                                    <input class="form-control" placeholder="{{ trans('provider_trans.pr_name_ar') }}" required="" type="text" name="pr_name_ar" id="pr_name_ar" >
-                                </div>
-                                <div class="form-group has-success">
-                                    <input class="form-control" placeholder="{{ trans('provider_trans.pr_name_en') }}" required="" type="text"  name="pr_name_en" id="pr_name_en">
-                                </div>
-                                <div class="form-group has-success">
-                                    <input class="form-control" placeholder="{{ trans('provider_trans.pr_email') }}" required="" type="email" name="pr_email" id="pr_email" >
-                                </div>
-                                <div class="form-group has-success">
-                                <select name="Id_country" class="form-control SlectBox" onclick="console.log($(this).val())"
-                                        onchange="console.log($(this).val())" >
-                                        <!--placeholder-->
-                                        <option value="" selected disabled>{{ trans('Government_trans.Country') }}</option>
-                                        @foreach ($Countries as $Country)
-                                        <option value="{{ $Country->id }}">{{ $Country->Name }}</option>
-                                    @endforeach
-                                  </select>
-                                </div>
-                                <div class="form-group has-success">
-                                <select id="id_city" name="id_city" class="form-control">
-                                     <option value="" selected disabled>{{ trans('Area_trans.city') }}</option>
-
-                                </select>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-
-                                <div class="form-group has-success">
-                                    <input class="form-control" placeholder="{{ trans('provider_trans.pr_num1') }}" required="" type="text" name="pr_num1" id="pr_num1" >
-                                </div>
-                                <div class="form-group has-success">
-                                    <input class="form-control" placeholder="{{ trans('provider_trans.pr_num2') }}" required="" type="text" name="pr_name_ar" id="pr_num2" >
-                                </div>
-                                <div class="form-group has-success">
-                                    <input class="form-control" placeholder="{{ trans('provider_trans.pr_num1') }}" required="" type="text" name="pr_name_ar" id="pr_num1" >
-                                </div>
-                              
-                                <div class="form-group has-success">
-                                <select id="Id_Governmentes" name="Id_Governmentes" class="form-control" onselect="get_city($(this).val())"
-                                     onchange="get_city($(this).val())"  onvolumechange="get_city($(this).val())">
-                                     <option value="" selected disabled>{{ trans('Area_trans.Governmentes') }}</option>
-                                 </select>
-                                </div>
-                                <div class="form-group has-success">
-                                 <select id="Id_Governmentes" name="Id_Governmentes" class="form-control" onselect="get_Area($(this).val())"
-                                     onchange="get_Area($(this).val())"  onvolumechange="get_Area($(this).val())">
-                                    <option value="" selected disabled>{{ trans('Area_trans.Area') }}</option>
-
-                                  </select>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!--/div-->
-
-    </div>
+				<!-- row -->
+				<div class="row">
+                <div class="col-lg-12 col-md-12">
+						<div class="card">
+							<div class="card-body">
 
 
+                            <form class="needs-validation was-validated" action="{{ route('provider.store')}}" method="post">
+                                     {{ csrf_field() }}
+									<div class="row row-sm">
+										<div class="col-lg-5">
+                                              <div class="form-group has-success mg-b-0">
+                                                <input class="form-control" placeholder="{{ trans('provider_trans.pr_name_ar') }}" required="" type="text" name="Name_ar" id="Name_ar" >
+                                                <input class="form-control mg-t-10" placeholder="{{ trans('provider_trans.pr_name_en') }}" required="" type="text"  name="Name_en" id="Name_en">
+                                                <input class="form-control mg-t-10 mg-b-10 " placeholder="{{ trans('provider_trans.pr_email') }}" required="" type="email" name="email" id="email" >
+                                                <input class="form-control mg-t-10 mg-b-10 " placeholder="{{ trans('provider_trans.long') }}" required="" type="text" name="long" id="long" >
+                                        </div>
+										</div>
+										<div class="col-lg-4">
+											<div class="form-group has-success mg-b-0">
+                                              <input class="form-control" placeholder="{{ trans('provider_trans.pr_num1') }}" required="" type="text" name="phone1" id="phone1" >
+                                              <input class="form-control mg-t-10" placeholder="{{ trans('provider_trans.pr_num2') }}" required="" type="text" name="phone2" id="phone2" >
+                                              <input class="form-control mg-t-10 mg-b-10 " placeholder="{{ trans('provider_trans.pr_land_number') }}" required="" type="text" name="line_number" id="line_number" >
+                                              <input class="form-control mg-t-10 mg-b-10 " placeholder="{{ trans('provider_trans.lat') }}" required="" type="text" name="lat" id="lat" >
+											</div>
+										</div>
+                                        <div class="col-lg-3">
+                                        <div class="form-group has-success mg-b-0">
+                                        <div class="mg-t-10">
+                                                    <select id="id_area" name="id_area"  class="form-control select2 "  required="">
+                                                        <option label="{{ trans('Area_trans.name') }}" value="0"  disabled>{{ trans('Area_trans.name') }}</option>
+                                                        <option  value="1"  >{{ trans('provider_trans.private') }}</option>
+                                                        <option  value="2"  >{{ trans('provider_trans.governmental') }}</option>
 
-        <!-- row closed -->
-    </div>
-    <!-- Container closed -->
-    </div>
-    <!-- main-content closed -->
-@endsection
+                                                    </select>
+                                                  
+                                         </div>
+                                        <div class="mg-b-10">
+                                                    <select  class="form-control select2 mg-t-10  "  required="" name="id_type">
+                                                            <option label="{{ trans('user_type_trans.name') }}" value="0"> {{ trans('user_type_trans.name') }}</option>
+                                                                @foreach ($user_types as $user_type)
+                                                            <option value="{{ $user_type->id }}">{{ $user_type->type_name }}</option>
+                                                                @endforeach
+                                                    </select>
+                                        </div>   
+                                        <div class="mg-t-10 mg-t-10 mg-b-10">
+                                                <select name="id_specialty" class="form-control select2 mg-t-10  "  required="" >
+                                                        <option label="{{ trans('specialty_trans.Name') }}" value="0"> {{ trans('specialty_trans.Name') }}</option>
+                                                            @foreach ($Specialtiys as $Specialtiy)
+                                                        <option value="{{ $Specialtiy->id }}">{{ $Specialtiy->Name }}</option>
+                                                            @endforeach
+                                                </select>
+                                         </div>
+                                        <div class="mg-t-10 mg-t-10 mg-b-10">
+                                                <select name="id_provider_category" class="form-control select2 mg-t-10  " >
+                                                        <option label="{{ trans('provider_category_trans.name') }}" value="0"> {{ trans('provider_category_trans.name') }}</option>
+                                                            @foreach ($provider_categorys as $provider_category)
+                                                        <option value="{{ $provider_category->id }}">{{ $provider_category->Name }}</option>
+                                                            @endforeach
+                                                </select>
+                                        </div>
+                                        <div class="mg-t-10">
+                                                    <select id="id_area" name="id_area"  class="form-control select2 "  required="">
+                                                        <option label="{{ trans('Area_trans.name') }}" value="0"  disabled>{{ trans('Area_trans.name') }}</option>
+                                                            @foreach ($Areaes as $Areae)
+                                                        <option value="{{ $Areae->id }}">{{ $Areae->Name }}</option>
+                                                            @endforeach
+                                                    </select>
+                                                  
+                                         </div>
+
+                                        </div>
+
+										</div>
+                                        
+                                        <div class="col-lg-9">
+                                      <input class="form-control mg-t-10 mg-b-10 " placeholder="{{ trans('provider_trans.address') }}" required="" type="text" name="address" id="address" >
+                                      <input class="form-control mg-t-10 mg-b-10 " placeholder="{{ trans('provider_trans.notes') }}" required="" type="text" name="notes" id="notes" >
+
+									</div> 
+									</div>
+                                   
+                                    <div class="mg-t-10">
+                                                <button type="submit" class="btn btn-primary">{{ trans('provider_trans.save') }}</button>
+									</div>
+                             </form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- row closed -->
+			</div>
+			<!-- Container closed -->
+		</div>
+		<!-- main-content closed -->
 @section('js')
-    <!-- Internal Data tables -->
-    <script src="{{ URL::asset('assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/datatable/js/dataTables.dataTables.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/datatable/js/responsive.dataTables.min.js') }}"></script>
-    @if(App::getlocale()=='ar')
-        <script src="{{ URL::asset('assets/plugins/datatable/js/jquery.dataTablesar.js') }}"></script>
-    @endif
-
-    <script src="{{ URL::asset('assets/plugins/datatable/js/dataTables.bootstrap4.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/datatable/js/dataTables.buttons.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/datatable/js/buttons.bootstrap4.min.js') }}"></script>
+<!--Internal  Select2 js -->
+<script src="{{URL::asset('assets/plugins/select2/js/select2.min.js')}}"></script>
+<!--Internal  Parsley.min js -->
+<script src="{{URL::asset('assets/plugins/parsleyjs/parsley.min.js')}}"></script>
+<!-- Internal Form-validation js -->
+<script src="{{URL::asset('assets/js/form-validation.js')}}"></script>
+<!--Internal Fileuploads js-->
+<script src="{{URL::asset('assets/plugins/fileuploads/js/fileupload.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/fileuploads/js/file-upload.js')}}"></script>
 
 
-    <script src="{{ URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/datatable/js/responsive.bootstrap4.min.js') }}"></script>
-    <!--Internal  Datatable js -->
-    <script src="{{ URL::asset('assets/js/table-data.js') }}"></script>
-    <script src="{{ URL::asset('assets/js/modal.js') }}"></script>
-    <!--Internal  Datepicker js -->
-
-    <!--Internal  Sweet-Alert js-->
-    <script src="{{URL::asset('assets/plugins/sweet-alert/sweetalert.min.js')}}"></script>
-    <script src="{{URL::asset('assets/plugins/sweet-alert/jquery.sweet-alert.js')}}"></script>
-    <!-- Sweet-alert js  -->
-    <script src="{{URL::asset('assets/plugins/sweet-alert/sweetalert.min.js')}}"></script>
-    <script src="{{URL::asset('assets/js/sweet-alert.js')}}"></script>
-    <script>
-        $(document).ready(function() {
-            $('select[name="Id_country"]').on('change', function() {
-                var Id_country = $(this).val();
-                if (Id_country) {
-                    $.ajax({
-                        url: "{{ URL::to('city') }}/" + Id_country,
-                        type: "GET",
-                        dataType: "json",
-                        success: function(data) {
-                            $('select[name="Id_Governmentes"]').empty();
-                            $.each(data, function(key, value) {
-                                $('select[name="Id_Governmentes"]').append('<option value="' +
-                                key + '">' + value + '</option>');
-                            });
-                        },
-                    });
-
-                } else {
-                    console.log('AJAX load did not work');
-                }
-            });
-
-        });
-
-
-    </script>
-    <script>
-
-function get_city(Id_Governmentes) {
-    var Id_Governmentes =Id_Governmentes;
-                if (Id_Governmentes) {
-                    $.ajax({
-                        url: "{{ URL::to('provider') }}/" + Id_Governmentes,
-                        type: "GET",
-                        dataType: "json",
-                        success: function(data) {
-                            $('select[name="id_city"]').empty();
-                            $.each(data, function(key, value) {
-                                $('select[name="id_city"]').append('<option value="' +
-                                key + '">' + value + '</option>');
-                            });
-                        },
-                    });
-
-                } else {
-                    console.log('AJAX load did not work');
-                }
-}
-
-function get_area(Id_city) {
-    var Id_city =Id_city;
-                if (Id_city) {
-                    $.ajax({
-                        url: "{{ URL::to('provider') }}/" + Id_city,
-                        type: "GET",
-                        dataType: "json",
-                        success: function(data) {
-                            $('select[name="id_area"]').empty();
-                            $.each(data, function(key, value) {
-                                $('select[name="id_area"]').append('<option value="' +
-                                key + '">' + value + '</option>');
-                            });
-                        },
-                    });
-
-                } else {
-                    console.log('AJAX load did not work');
-                }
-}
-
-    </script>
+@endsection
 @endsection
