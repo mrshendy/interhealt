@@ -41,5 +41,6 @@ use App\Http\Controllers\API\ApiController;
         Route::post('User_type','User_typecontroller@index');
 
         Route::post('Join_request','Join_requestcontroller@store');
+        Route::post('Request','RequestsController@store');
 
     });
