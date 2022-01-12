@@ -11,6 +11,8 @@ class Join_request extends Model
         'email',
         'user_type_id',
         'Specialization_id',
+        'password_show',
+        'password',
         'Address',
         'lat',
         'long',

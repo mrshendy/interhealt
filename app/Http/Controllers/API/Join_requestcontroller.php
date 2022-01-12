@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Support\Facades\Hash;
 
 class Join_requestcontroller extends Controller
 {
@@ -47,7 +47,8 @@ class Join_requestcontroller extends Controller
                 'lat' => 'required|string|min:2|max:255',
                 'long' => 'required|string|min:2|max:255',
                 'Agree_to_the_terms' => 'required|string|min:1|max:50',
-                'phone' => 'required|string|min:11|max:11'
+                'phone' => 'required|string|min:11|max:11',
+            
 
             ]);
            
@@ -66,6 +67,11 @@ class Join_requestcontroller extends Controller
             $Join_request->lat=$request->lat;
             $Join_request->long=$request->long;
             $Join_request->Agree_to_the_terms=$request->Agree_to_the_terms;
+            $password_show=$request->password;
+            $password=Hash::make($request->password);
+            $Join_request->password_show=$password_show;
+            $Join_request->password=$password;
+    
             $Join_request->save();
             return $this->apiresponse_Saved_successfully('Saved successfully',200);
         } catch (JWTException $e) {

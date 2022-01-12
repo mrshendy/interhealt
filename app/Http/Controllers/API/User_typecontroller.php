@@ -35,7 +35,7 @@ class User_typecontroller extends Controller
             $User_type->user_add=$request->user_add;
             $User_type->save();
             $User_type=User_type::select('id','type_name->'. app()->getlocale(). ' as User_Type')->get();
-            return $this->apiresponse($Specialtiy,'ok',200);
+            return $this->apiresponse($User_type,'ok',200);
   
     }
 }
