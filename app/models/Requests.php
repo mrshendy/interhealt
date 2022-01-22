@@ -15,7 +15,7 @@ class Requests extends Model
         'gender',
         'notes',
         'sender_id',
-
+        'status '
     ];
 
     protected $table = 'Requests';

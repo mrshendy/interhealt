@@ -76,6 +76,7 @@ class RequestsController extends Controller
         $Request->date_of_birth=$request->date_of_birth;
         $Request->notes=$request->notes;
         $Request->gender=$request->gender;
+        $Request->status=0;
         $Request->save();
 
         if($request->hasFile('file'))

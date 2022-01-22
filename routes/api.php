@@ -39,8 +39,26 @@ use App\Http\Controllers\API\ApiController;
         Route::post('Specialtiystore','Specialtiycontroller@store');
 
         Route::post('User_type','User_typecontroller@index');
-
+        // get Countries
+        Route::post('Countries','Countriescontroller@index');
+        // get Government
+        Route::post('Government','Governmentcontroller@show');
+        // get City
+        Route::post('City','Citycontroller@show');
+        // get Area
+        Route::post('Area','Areacontroller@show');
+        //add conversion_purpose
+        Route::post('conversion_purpose_add','conversion_purposecontroller@store');
+        //add conversion_purpose
+        Route::post('conversion_purpose','conversion_purposecontroller@index');
+        // add transfer_type
+        Route::post('transfer_type_add','transfer_typecontroller@store');
+        //add conversion_purpose
+        Route::post('transfer_type','transfer_typecontroller@index');
+      
         Route::post('Join_request','Join_requestcontroller@store');
+        //add details_Request
+        Route::post('details_Request','details_Requestcontroller@store');
         Route::post('Request','RequestsController@store');
 
     });

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Provider;
 use App\Http\Controllers\Controller;
-use Alert;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\storeProvider;
 use App\models\Provider;
 use App\models\Provider_Category;
@@ -73,8 +73,10 @@ class ProviderController extends Controller
         $Provider->line_number=$request->line_number;
         $Provider->user_add=(Auth::user()->id);
         $Provider->save();
-        Alert::success( '', trans('service_type_trans.savesuccess'));
-        return redirect()->route('service_type.index');
+        $Provider_id=Provider::latest()->first()->id;
+        $_SESSION['id_provider']=$Provider_id;
+        Alert::success( '', trans('provider_trans.savesuccess'));
+        return redirect()->route('provider_attachments.index');
 
     }catch(\Exception $e)
     {

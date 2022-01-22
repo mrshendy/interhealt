@@ -11,14 +11,14 @@ class CreateProvidersTable extends Migration {
 		Schema::create('providers', function(Blueprint $table) {
 			$table->increments('id');
 			$table->text('Name');
-			$table->text('phone1');
-			$table->string('phone2', 13);
-			$table->text('line_number');
+			$table->string('phone1', 13);
+			$table->string('phone2', 13)->nullable();
+			$table->text('line_number')->nullable();;
 			$table->text('email');
 			$table->text('address');
 			$table->text('lat');
 			$table->text('long');
-			$table->text('notes');
+			$table->text('notes')->nullable();
             $table->unsignedBigInteger('id_type');
             $table->foreign('id_type')->references('id')->on('User_types')->onDelete('cascade');
 			$table->unsignedBigInteger('id_specialty');

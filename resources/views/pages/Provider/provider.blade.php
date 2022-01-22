@@ -48,25 +48,25 @@
                 <div class="col-lg-12 col-md-12">
 						<div class="card">
 							<div class="card-body">
-
-
                             <form class="needs-validation was-validated" action="{{ route('provider.store')}}" method="post">
                                      {{ csrf_field() }}
 									<div class="row row-sm">
 										<div class="col-lg-5">
-                                              <div class="form-group has-success mg-b-0">
+                                            <div class="form-group has-success mg-b-0">
                                                 <input class="form-control" placeholder="{{ trans('provider_trans.pr_name_ar') }}" required="" type="text" name="Name_ar" id="Name_ar" >
                                                 <input class="form-control mg-t-10" placeholder="{{ trans('provider_trans.pr_name_en') }}" required="" type="text"  name="Name_en" id="Name_en">
                                                 <input class="form-control mg-t-10 mg-b-10 " placeholder="{{ trans('provider_trans.pr_email') }}" required="" type="email" name="email" id="email" >
                                                 <input class="form-control mg-t-10 mg-b-10 " placeholder="{{ trans('provider_trans.long') }}" required="" type="text" name="long" id="long" >
-                                        </div>
+                                                <input class="form-control mg-t-10 mg-b-10 " placeholder="{{ trans('provider_trans.password') }}" required="" type="text" name="password" id="password" >
+                                            </div>
 										</div>
 										<div class="col-lg-4">
 											<div class="form-group has-success mg-b-0">
                                               <input class="form-control" placeholder="{{ trans('provider_trans.pr_num1') }}" required="" type="text" name="phone1" id="phone1" >
-                                              <input class="form-control mg-t-10" placeholder="{{ trans('provider_trans.pr_num2') }}" required="" type="text" name="phone2" id="phone2" >
-                                              <input class="form-control mg-t-10 mg-b-10 " placeholder="{{ trans('provider_trans.pr_land_number') }}" required="" type="text" name="line_number" id="line_number" >
+                                              <input class="form-control mg-t-10" placeholder="{{ trans('provider_trans.pr_num2') }}"  type="text" name="phone2" id="phone2" >
+                                              <input class="form-control mg-t-10 mg-b-10 " placeholder="{{ trans('provider_trans.pr_land_number') }}" type="text" name="line_number" id="line_number" >
                                               <input class="form-control mg-t-10 mg-b-10 " placeholder="{{ trans('provider_trans.lat') }}" required="" type="text" name="lat" id="lat" >
+                                              <input class="form-control mg-t-10 mg-b-10 " placeholder="{{ trans('provider_trans.password_show') }}" required="" type="text" name="password_show" id="password_show" >
 											</div>
 										</div>
                                         <div class="col-lg-3">
@@ -76,11 +76,9 @@
                                                         <option label="{{ trans('Area_trans.name') }}" value="0"  disabled>{{ trans('Area_trans.name') }}</option>
                                                         <option  value="1"  >{{ trans('provider_trans.private') }}</option>
                                                         <option  value="2"  >{{ trans('provider_trans.governmental') }}</option>
-
                                                     </select>
-                                                  
                                          </div>
-                                        <div class="mg-b-10">
+                                        <div class="mg-b-10 mg-t-10">
                                                     <select  class="form-control select2 mg-t-10  "  required="" name="id_type">
                                                             <option label="{{ trans('user_type_trans.name') }}" value="0"> {{ trans('user_type_trans.name') }}</option>
                                                                 @foreach ($user_types as $user_type)
@@ -111,16 +109,13 @@
                                                         <option value="{{ $Areae->id }}">{{ $Areae->Name }}</option>
                                                             @endforeach
                                                     </select>
-                                                  
-                                         </div>
-
                                         </div>
-
+                                        </div>
 										</div>
                                         
                                         <div class="col-lg-9">
                                       <input class="form-control mg-t-10 mg-b-10 " placeholder="{{ trans('provider_trans.address') }}" required="" type="text" name="address" id="address" >
-                                      <input class="form-control mg-t-10 mg-b-10 " placeholder="{{ trans('provider_trans.notes') }}" required="" type="text" name="notes" id="notes" >
+                                      <input class="form-control mg-t-10 mg-b-10 " placeholder="{{ trans('provider_trans.notes') }}"  type="text" name="notes" id="notes" >
 
 									</div> 
 									</div>

@@ -34,46 +34,40 @@ Route::group(
         'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath','auth' ]
     ], function(){
 
-        Route::group(['namespace'=>'Country'],function()
+      
+     
+       
+        Route::group(['namespace'=>'Application_settings'],function()
         {
+            //countries
             Route::resource('countries', 'CountriesController');
-        });
-        Route::group(['namespace'=>'Government'],function()
-        {
-            Route::resource('government', 'GovernmentController');
-        });
-        Route::group(['namespace'=>'City'],function()
-        {
+            //city
             Route::get('/city/{id}', 'CityController@getGovernment');
             Route::resource('city', 'CityController');
-
-        });
-        Route::group(['namespace'=>'Area'],function()
-        {
+            //government
+            Route::resource('government', 'GovernmentController');
+            //area
             Route::get('/area/{id}', 'AreaController@getcity');
             Route::resource('area', 'AreaController');
+            //User_type
+            Route::resource('User_type','User_typeController');
+            //specialtiy
+            Route::resource('specialtiy','SpecialtiyController');
+            //Service_type
+            Route::resource('service_type', 'Service_typeController');
+            //provider_Category
+            Route::resource('provider_Category', 'Provider_CategoryController');
+       
         });
 
-        Route::group(['namespace'=>'User_type'],function()
-        {
-                Route::resource('User_type','User_typeController');
-        });
-        Route::group(['namespace'=>'Specialtiy'],function()
-        {
-                Route::resource('specialtiy','SpecialtiyController');
-        });
-        
-        Route::group(['namespace'=>'Service_type'],function()
-        {
-            Route::resource('service_type', 'Service_typeController');
-        });
+    
         Route::group(['namespace'=>'Provider'],function()
         {
             Route::resource('provider', 'ProviderController');
         });
-        Route::group(['namespace'=>'Provider_Category'],function()
+        Route::group(['namespace'=>'provider_attachments'],function()
         {
-            Route::resource('provider_Category', 'Provider_CategoryController');
+            Route::resource('provider_attachments', 'provider_attachmentsController');
         });
         Route::get('/{page}', 'AdminController@index');
     });
